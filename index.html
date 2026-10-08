@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Decor Buyer Finder</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <h1>US Home Decor Buyer Finder</h1>
+    <div class="search-pill-container">
+  <div class="search-field">
+    <label>Search with Location here :</label>
+    <input type="text" placeholder="e.g. San Francisco" id="locationInput">
+  </div>
+  <div class="divider"></div>
+  <div class="search-field">
+    <label>Search the interest here :</label>
+    <input type="text" placeholder="e.g.  Lighting" id="interestInput">
+  </div>
+</div>
+
+<style>
+  .search-pill-container {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 2px solid #3272c6;
+    border-radius: 4px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 680px;
+    margin: 20px auto;
+  }
+  .search-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 12px;
+  }
+  .search-field label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 2px;
+  }
+  .search-field input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #1e293b;
+    background: transparent;
+  }
+  .divider {
+    width: 1px;
+    height: 32px;
+    background-color: #e2e8f0;
+  }
+  .search-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  .search-btn:hover {
+    background-color: #1d4ed8;
+  }
+</style>
+    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Flag_of_the_United_States_%28US_Government_Printing_Office_specifications%29.svg/250px-Flag_of_the_United_States_%28US_Government_Printing_Office_specifications%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" alt="america image">
+    <button id="btn">Find Buyers</button>
+    <br>
+    <br>
+    <br>
+    <div id="buyersContainer"></div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
