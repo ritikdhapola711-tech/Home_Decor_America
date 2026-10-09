@@ -3,82 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Decor Buyer Finder</title>
+    <title>US Home Decor Company - Find Potential Buyers</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-
 <body>
 
-    <h1>US Home Decor Buyer Finder</h1>
-    <div class="search-pill-container">
-  <div class="search-field">
-    <label>Search with Location here :</label>
-    <input type="text" placeholder="e.g. San Francisco" id="locationInput">
-  </div>
-  <div class="divider"></div>
-  <div class="search-field">
-    <label>Search the interest here :</label>
-    <input type="text" placeholder="e.g.  Lighting" id="interestInput">
-  </div>
-</div>
+    <!-- HEADER / NAVIGATION -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">US Home Decor Company</div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#find-buyers">Find Buyers</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="#find-buyers" class="btn-nav">Find Buyers</a>
+            </nav>
+        </div>
+    </header>
 
-<style>
-  .search-pill-container {
-    display: flex;
-    align-items: center;
-    background: #ffffff;
-    border: 2px solid #3272c6;
-    border-radius: 4px;
-    padding: 8px 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    max-width: 680px;
-    margin: 20px auto;
-  }
-  .search-field {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 0 12px;
-  }
-  .search-field label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #64748b;
-    margin-bottom: 2px;
-  }
-  .search-field input {
-    border: none;
-    outline: none;
-    font-size: 14px;
-    color: #1e293b;
-    background: transparent;
-  }
-  .divider {
-    width: 1px;
-    height: 32px;
-    background-color: #e2e8f0;
-  }
-  .search-btn {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s ease;
-  }
-  .search-btn:hover {
-    background-color: #1d4ed8;
-  }
-</style>
-    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Flag_of_the_United_States_%28US_Government_Printing_Office_specifications%29.svg/250px-Flag_of_the_United_States_%28US_Government_Printing_Office_specifications%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" alt="america image">
-    <button id="btn">Find Buyers</button>
-    <br>
-    <br>
-    <br>
-    <div id="buyersContainer"></div>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="badge">Smart Buyer Discovery</span>
+                <h1>Find the right buyers.<br>Grow your home brand.</h1>
+                <p>US Home Decor Company helps sellers discover potential business buyers and connect with them faster.</p>
+                <div class="hero-buttons">
+                    <a href="#find-buyers" class="btn-primary">Find Buyers</a>
+                    <a href="#how-it-works" class="btn-secondary">How It Works</a>
+                </div>
+                <div class="hero-features">
+                    <span>✓ No CSV uploads</span>
+                    <span>✓ Fast buyer search</span>
+                    <span>✓ Direct outreach</span>
+                </div>
+            </div>
+
+            <!-- PREVIEW CARD -->
+            <div class="hero-preview-card">
+                <div class="preview-header">
+                    <div class="preview-title">
+                        <strong>US Home Decor</strong>
+                        <span>Buyer Discovery</span>
+                    </div>
+                    <span class="status-indicator">● Live</span>
+                </div>
+                <div class="preview-search-bar">
+                    <span class="search-icon">🔍</span>
+                    <span>Furniture — New York</span>
+                </div>
+                <div class="preview-item">
+                    <strong>HomeStyle Interiors</strong>
+                    <p>Home Decor Store</p>
+                    <small>📍 New York, NY</small>
+                </div>
+                <div class="preview-item">
+                    <strong>Modern Living Co.</strong>
+                    <p>Furniture Buyer</p>
+                    <small>📍 Brooklyn, NY</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEARCH SECTION -->
+    <section class="search-section" id="find-buyers">
+        <div class="search-header">
+            <span class="section-tag">Buyer Search</span>
+            <h2>Find potential buyers</h2>
+            <p>Search for businesses that could be interested in your home decor products.</p>
+        </div>
+
+        <div class="search-pill-container">
+            <div class="search-field">
+                <label>Product category</label>
+                <select id="interestInput">
+                    <option value="">All Categories</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Home Decor">Home Decor</option>
+                    <option value="Lighting">Lighting</option>
+                    <option value="Rugs">Rugs</option>
+                    <option value="Wall Decor">Wall Decor</option>
+                    <option value="Kitchen">Kitchen</option>
+                </select>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="search-field">
+                <label>Location</label>
+                <input type="text" placeholder="City or State" id="locationInput">
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="search-field">
+                <label>Buyer type</label>
+                <select id="buyerTypeInput">
+                    <option value="">All Buyer Types</option>
+                    <option value="Home Decor Stores">Home Decor Stores</option>
+                    <option value="Furniture Stores">Furniture Stores</option>
+                    <option value="Interior Designers">Interior Designers</option>
+                    <option value="Retailers">Retailers</option>
+                    <option value="Wholesalers">Wholesalers</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="btn" class="search-btn">🔍 Search Potential Buyers</button>
+    </section>
+
+    <!-- RESULTS CONTAINER -->
+    <section class="results-section">
+        <div class="results-header">
+            <h3>Potential Buyers</h3>
+            <span id="buyerCount">0 Buyers</span>
+        </div>
+        <div id="buyersContainer">
+            <p class="no-buyers-msg">No buyers found. Click search to discover potential buyers.</p>
+        </div>
+    </section>
+
+    <!-- COMPOSE MESSAGE SECTION -->
+    <section class="outreach-section" id="composeSection" style="display: none;">
+        <div class="outreach-card">
+            <span class="section-tag">Buyer Outreach</span>
+            <h3>Compose your message</h3>
+            <p>Create a personalized message for your selected buyer.</p>
+
+            <form id="emailForm" onsubmit="return false;">
+                <div class="form-group">
+                    <label>Buyer email</label>
+                    <input type="email" id="buyerEmail" placeholder="Enter buyer's email address">
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" id="emailSubject" value="Partnership opportunity for your home decor collection">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="emailMessage" rows="6">I'm reaching out from our home decor brand to explore a potential partnership with your business.
+
+We offer thoughtfully designed home decor products that may be a good fit for your customers.
+
+I'd be happy to share our product collection and discuss how we could work together.</textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="sendEmailBtn" class="btn-primary">✈ Send Email</button>
+                    <button type="button" id="cancelEmailBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works-section" id="how-it-works">
+        <span class="section-tag">Simple Workflow</span>
+        <h2>How US Home Decor Company works</h2>
+        <p>Discover, select, and contact potential buyers in a few steps.</p>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-num">01</span>
+                <h4>Find buyers</h4>
+                <p>Search potential business buyers using product category, location, and buyer type.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-num">02</span>
+                <h4>Select a buyer</h4>
+                <p>Review buyer information and select the business you want to contact.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-num">03</span>
+                <h4>Start outreach</h4>
+                <p>Create a personalized email and prepare your buyer outreach from one place.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section" id="features">
+        <span class="section-tag">Built for Sellers</span>
+        <h2>Everything you need to reach buyers</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h4>Buyer Discovery</h4>
+                <p>Quickly search for relevant businesses.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎛️</div>
+                <h4>Smart Filters</h4>
+                <p>Narrow results by category, location, and type.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✉️</div>
+                <h4>Outreach</h4>
+                <p>Prepare personalized buyer messages.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h4>Campaign Tracking</h4>
+                <p>Keep track of your buyer outreach.</p>
+            </div>
+        </div>
+    </section>
+
     <script src="/static/script.js"></script>
 </body>
 </html>
