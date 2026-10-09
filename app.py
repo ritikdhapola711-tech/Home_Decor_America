@@ -1,6 +1,6 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory
 import mysql.connector
-from flask import request
+
 app = Flask(__name__)
 
 
@@ -20,52 +20,34 @@ def home():
 
 @app.route("/api/buyers")
 def get_buyers():
+    location = request.args.get("location", "")
+    interest = request.args.get("interest", "")
 
-    db = get_db_connection()
-    cursor = db.cursor(dictionary=True)
+    db = None
+    try:
+        db = get_db_connection()
+        cursor = db.cursor(dictionary=True)
 
-    cursor.execute("SELECT * FROM buyers")
+        query = """
+            SELECT * FROM buyers
+            WHERE (city LIKE %s OR state LIKE %s OR %s = '')
+            AND (interest LIKE %s OR %s = '')
+        """
 
-    buyers = cursor.fetchall()
+        loc_param = f"%{location}%" if location else ""
+        int_param = f"%{interest}%" if interest else ""
 
-    cursor.close()
-    db.close()
+        cursor.execute(query, (loc_param, loc_param, location, int_param, interest))
+        buyers = cursor.fetchall()
 
-    return jsonify(buyers)
+        cursor.close()
+        return jsonify(buyers)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        if db and db.is_connected():
+            db.close()
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-app = Flask(__name__)
-
-
-@app.route("/")
-def home():
-    return send_from_directory("static", "index.html")
-
-
-if __name__ == "__main__":
-    app.run(debug=True) 
-@app.route("/api/buyers")
-def get_buyers():
-
-    location = request.args.get("location", "")
-    interest = request.args.get("interest", "")
-
-    db = get_db_connection()
-    cursor = db.cursor(dictionary=True)
-
-    query = """
-        SELECT * FROM buyers
-        WHERE city LIKE %s
-        AND interest LIKE %s
-    """
-
-    cursor.execute(query, (f"%{location}%", f"%{interest}%"))
-
-    buyers = cursor.fetchall()
-
-    cursor.close()
-    db.close()
-
-    return jsonify(buyers)
