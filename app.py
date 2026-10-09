@@ -20,30 +20,34 @@ def home():
 
 @app.route("/api/buyers")
 def get_buyers():
-    location = request.args.get("location", "")
-    interest = request.args.get("interest", "")
+    location = request.args.get("location", "").strip()
+    interest = request.args.get("interest", "").strip()
 
     db = None
     try:
         db = get_db_connection()
         cursor = db.cursor(dictionary=True)
 
+        # SQL Query that handles optional search parameters dynamically
         query = """
             SELECT * FROM buyers
-            WHERE (city LIKE %s OR state LIKE %s OR %s = '')
-            AND (interest LIKE %s OR %s = '')
+            WHERE (%s = '' OR city LIKE %s OR state LIKE %s)
+            AND (%s = '' OR interest LIKE %s)
         """
 
-        loc_param = f"%{location}%" if location else ""
-        int_param = f"%{interest}%" if interest else ""
+        loc_param = f"%{location}%"
+        int_param = f"%{interest}%"
 
-        cursor.execute(query, (loc_param, loc_param, location, int_param, interest))
+        cursor.execute(query, (location, loc_param, loc_param, interest, int_param))
         buyers = cursor.fetchall()
 
         cursor.close()
         return jsonify(buyers)
+
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        print("Database Error:", str(e))
+        return jsonify({"error": "Failed to fetch buyers from database."}), 500
+
     finally:
         if db and db.is_connected():
             db.close()
